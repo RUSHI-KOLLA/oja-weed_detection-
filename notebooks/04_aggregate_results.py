@@ -107,7 +107,7 @@ if master_df.empty:
         "yolov8n", "yolov8s", "yolov8m", "yolov9t", "yolov9s",
         "yolov10n", "yolov10s", "yolov11n", "rt-detr-l", "yolo-world",
     ]
-    datasets_list = ["CottonWeed", "DeepWeeds", "RiceWeed"]
+    datasets_list = ["MH-Weed16", "CottonWeed", "RiceWeed"]
     rows = []
     for m in models_list:
         for d in datasets_list:

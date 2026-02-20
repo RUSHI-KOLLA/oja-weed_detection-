@@ -3,7 +3,7 @@
 
 # ── Model ────────────────────────────────────────────────────────────────────
 model:
-  num_classes: 15          # Adjust to match your dataset: CottonWeed=16, DeepWeeds=9
+  num_classes: 16          # Adjust to match your dataset: MHWeed16=16, CottonWeed=16, RiceWeed=4
   img_size: 640            # Input image size (pixels)
   fpn_channels: 128        # Uniform channel width inside the FPN
 
@@ -40,7 +40,7 @@ checkpoint:
 
 # ── Dataset ──────────────────────────────────────────────────────────────────
 dataset:
-  yaml: configs/dataset_configs/cottonweed.yaml   # path to dataset config
+  yaml: configs/dataset_configs/mhweed16.yaml   # path to dataset config (mhweed16 | cottonweed | riceweed)
   workers: 4
 
 # ── Augmentation ─────────────────────────────────────────────────────────────

@@ -1,0 +1,61 @@
+# MH-Weed16 Dataset Configuration
+# =================================
+# Large-scale Indian multi-class weed dataset from Maharashtra agricultural fields
+# Region: India (Maharashtra)
+# Annotation: Bounding boxes (YOLO format)
+#
+# Download Instructions:
+# Option 1 - Kaggle:
+#   Search "MH-Weed16" or "Maharashtra weed dataset" at https://www.kaggle.com/datasets
+#   Export in YOLOv8 format
+#
+# Option 2 - Direct search:
+#   Search "MH-Weed16 Maharashtra weed detection" for dataset repositories
+#
+# Relevance: Primary training dataset — largest Indian agriculture weed dataset
+#            with bounding box annotations across 16 weed species
+
+# Dataset paths (update after downloading)
+path: datasets/mhweed16
+train: images/train
+val: images/val
+test: images/test
+
+# Task: Object detection (bounding boxes, YOLO format)
+task: detect
+
+# Number of classes
+nc: 16
+
+# Class names — 16 common Indian weed species
+names:
+  0: Ageratum
+  1: Alternanthera
+  2: Amaranthus
+  3: Celosia
+  4: Chenopodium
+  5: Commelina
+  6: Cynodon
+  7: Cyperus
+  8: Digera
+  9: Eclipta
+  10: Euphorbia
+  11: Ipomoea
+  12: Parthenium
+  13: Phyllanthus
+  14: Sida
+  15: Tridax
+
+# Dataset info
+dataset_name: MH-Weed16
+description: "Large-scale Indian weed detection dataset from Maharashtra agricultural fields — 16 weed species, bounding box annotations"
+annotation_type: bounding_box
+approximate_images: 25972
+source: "Kaggle — search 'MH-Weed16' or 'Maharashtra weed dataset'"
+
+# ── Dataset statistics ───────────────────────────────────────────────────────
+stats:
+  total_images: 25972
+  img_size: 640
+  balanced: false
+  note: "Download from Kaggle: search 'MH-Weed16' or 'Maharashtra weed dataset'"
