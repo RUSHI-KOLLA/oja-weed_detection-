@@ -60,7 +60,7 @@ oja-weed_detection-/
 │   ├── dataset_configs/
 │   │   ├── deepweeds.yaml
 │   │   ├── cottonweed.yaml
-│   │   └── cwfid.yaml
+│   │   └── riceweed.yaml
 │   └── __init__.py
 ├── notebooks/
 │   ├── 01_setup_and_explore.py   # Colab setup & data exploration
@@ -168,7 +168,7 @@ Results are saved to `results/benchmarks/benchmark_results.csv`.
 |---|---|---|---|
 | [DeepWeeds](https://github.com/AlexOlsen/DeepWeeds) | Classification | 8 weeds + negative | ~17 509 |
 | [CottonWeed](https://zenodo.org/record/7535814) | Detection | 15 weeds + cotton | ~7 578 |
-| [CWFID](https://github.com/cwfid/dataset) | Segmentation | crop + weed | 60 |
+| [RiceWeed](https://universe.roboflow.com) | Detection | rice + weeds | ~3,000 |
 
 Update `configs/dataset_configs/*.yaml` with your local paths.
 

@@ -1,3 +1,8 @@
+# IMPORTANT: This is a CLASSIFICATION dataset (no bounding boxes)
+# Download: https://github.com/AlexOlsen/DeepWeeds
+# For detection tasks, adaptation is needed (e.g., whole-image classification)
+# Classes: 8 weed species + 1 negative class = 9 total
+#
 # DeepWeeds dataset configuration
 # Reference: Olsen et al. (2019) — DeepWeeds: A multiclass weed species image dataset
 # https://doi.org/10.1038/s41598-018-38343-3
