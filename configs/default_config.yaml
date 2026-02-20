@@ -1,0 +1,53 @@
+# AgroKD-Net default training configuration
+# Edit values below or override via CLI / notebook.
+
+# ── Model ────────────────────────────────────────────────────────────────────
+model:
+  num_classes: 15          # Number of target classes (adjust per dataset)
+  img_size: 640            # Input image size (pixels)
+  fpn_channels: 128        # Uniform channel width inside the FPN
+
+# ── Training ─────────────────────────────────────────────────────────────────
+training:
+  epochs: 100
+  batch_size: 16
+  lr: 0.001
+  weight_decay: 0.0001
+  seed: 42
+  optimizer: adamw         # adamw | sgd | adam
+  scheduler: cosine        # cosine | step | plateau
+
+# ── Loss weights (OJS) ───────────────────────────────────────────────────────
+loss:
+  lambda_det:  1.0         # Detection / task loss (GBPR)
+  lambda_kd:   0.5         # Knowledge distillation loss (EAKD)
+  lambda_imb:  0.3         # Imbalance-aware focal loss (AIPL)
+  lambda_scd:  0.2         # Structural context distillation (SCD)
+
+# ── Distillation ─────────────────────────────────────────────────────────────
+distillation:
+  temperature:   4.0       # Softmax temperature T
+  alpha_soft:    0.7       # Weight for soft-label loss
+  alpha_feat:    0.3       # Weight for feature-level loss
+  lambda_energy: 0.1       # Energy-penalty weight inside EAKD
+
+# ── Checkpoints ──────────────────────────────────────────────────────────────
+checkpoint:
+  save_interval_minutes: 10
+  max_checkpoints: 3
+  # Set to your Google Drive path when running on Colab:
+  checkpoint_dir: checkpoints/
+
+# ── Dataset ──────────────────────────────────────────────────────────────────
+dataset:
+  yaml: configs/dataset_configs/cottonweed.yaml   # path to dataset config
+  workers: 4
+
+# ── Augmentation ─────────────────────────────────────────────────────────────
+augmentation:
+  horizontal_flip: true
+  vertical_flip: false
+  random_crop: true
+  color_jitter: true
+  mosaic: true
+  mixup: false
