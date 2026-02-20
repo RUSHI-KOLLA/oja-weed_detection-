@@ -79,7 +79,7 @@ print("✅ Imports successful.")
 # Cell 3: Configuration
 # ────────────────────────────────────────────────────────────────────────────
 
-NUM_CLASSES         = 15
+NUM_CLASSES         = 16
 NUM_EPOCHS          = 100
 LR                  = 1e-3
 WEIGHT_DECAY        = 1e-4

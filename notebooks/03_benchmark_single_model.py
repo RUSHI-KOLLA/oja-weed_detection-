@@ -39,8 +39,8 @@ Steps covered:
 
 MODEL_NAME  = "yolov8n"          # Change this to your assigned model
 MODEL_PATH  = "yolov8n.pt"       # Ultralytics model file / identifier
-DATASET     = "cottonweed"       # "cottonweed" | "deepweeds" | "riceweed"
-DATASET_YAML = "configs/dataset_configs/cottonweed.yaml"  # matching YAML path
+DATASET     = "mhweed16"         # "mhweed16" | "cottonweed" | "riceweed"
+DATASET_YAML = "configs/dataset_configs/mhweed16.yaml"  # matching YAML path
 
 # ────────────────────────────────────────────────────────────────────────────
 # Cell 1: GPU check + install dependencies

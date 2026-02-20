@@ -48,7 +48,7 @@ python scripts/master_benchmark_loop.py
 ```
 
 This will:
-1. Train each of the 10 benchmark models on CottonWeed, DeepWeeds, and RiceWeed (50 epochs each).
+1. Train each of the 10 benchmark models on MH-Weed16, CottonWeed, and RiceWeed (50 epochs each).
 2. Measure FPS and GPU energy consumption per model.
 3. Compute an Efficiency Score (mAP50 / Energy).
 4. Save all results to `results/benchmark_results.csv` (and Google Drive if on Colab).
@@ -111,8 +111,8 @@ setInterval(keepAlive, 60000);
 |--------|------|
 | 1 | Setup: clone repo, install deps, verify GPU in Colab |
 | 2 | Download & verify all three datasets; update YAML configs |
-| 3–4 | Interns run `03_benchmark_single_model.py` on CottonWeed |
-| 5–6 | Interns run `03_benchmark_single_model.py` on DeepWeeds |
+| 3–4 | Interns run `03_benchmark_single_model.py` on MH-Weed16 |
+| 5–6 | Interns run `03_benchmark_single_model.py` on CottonWeed |
 | 7–8 | Interns run `03_benchmark_single_model.py` on RiceWeed |
 | 9 | Team lead runs `04_aggregate_results.py` — merge all CSVs |
 | 10 | Run ablation study (`05_ablation_study.py`) on best dataset |
@@ -163,7 +163,7 @@ oja-weed_detection-/
 │   ├── default_config.yaml       # Default hyper-parameters
 │   ├── experiment_config.yaml    # ⭐ Standardised experiment settings
 │   ├── dataset_configs/
-│   │   ├── deepweeds.yaml
+│   │   ├── mhweed16.yaml
 │   │   ├── cottonweed.yaml
 │   │   └── riceweed.yaml
 │   └── __init__.py
@@ -274,9 +274,11 @@ Results are saved to `results/benchmarks/benchmark_results.csv`.
 
 | Dataset | Task | Classes | Images |
 |---|---|---|---|
-| [DeepWeeds](https://github.com/AlexOlsen/DeepWeeds) | Classification | 8 weeds + negative | ~17 509 |
-| [CottonWeed](https://zenodo.org/record/7535814) | Detection | 15 weeds + cotton | ~7 578 |
+| [MH-Weed16](https://www.kaggle.com/datasets) | Detection | 16 Indian weed species | ~25,972 |
+| [CottonWeed](https://zenodo.org/record/7535814) | Detection | 15 weeds + cotton | ~7,578 |
 | [RiceWeed](https://universe.roboflow.com) | Detection | rice + weeds | ~3,000 |
+
+**MH-Weed16** (Maharashtra Weed Dataset) is the primary training dataset — the largest Indian agriculture weed detection dataset with bounding box annotations across 16 weed species from Maharashtra field conditions.
 
 Update `configs/dataset_configs/*.yaml` with your local paths.
 

@@ -31,12 +31,12 @@ benchmark_models:
   yolo-world: yolov8s-worldv2.pt
 
 datasets:
+  - name: MH-Weed16
+    config: configs/dataset_configs/mhweed16.yaml
+    task: detect
   - name: CottonWeed
     config: configs/dataset_configs/cottonweed.yaml
     task: detect
-  - name: DeepWeeds
-    config: configs/dataset_configs/deepweeds.yaml
-    task: classify
   - name: RiceWeed
     config: configs/dataset_configs/riceweed.yaml
     task: detect

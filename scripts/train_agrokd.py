@@ -36,7 +36,7 @@ from utils.auto_checkpoint_saver import AutoCheckpointSaver, resume_from_checkpo
 # ── Configuration ──────────────────────────────────────────────────────────
 # ---------------------------------------------------------------------------
 
-NUM_CLASSES: int = 15          # Adjust to match your dataset
+NUM_CLASSES: int = 16          # Adjust to match your dataset: MHWeed16=16, CottonWeed=16, RiceWeed=4
 NUM_EPOCHS: int = 100
 LR: float = 1e-3
 WEIGHT_DECAY: float = 1e-4

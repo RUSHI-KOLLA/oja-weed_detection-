@@ -1,6 +1,6 @@
 """
 Download and prepare all 3 datasets for AgroKD-Net
-Datasets: CottonWeed, DeepWeeds, RiceWeed
+Datasets: MH-Weed16, CottonWeed, RiceWeed
 Compatible with Google Colab
 """
 import os
@@ -27,22 +27,16 @@ def create_dataset_structure(base_path, dataset_name):
             os.makedirs(path, exist_ok=True)
     print(f"📁 Created folder structure for {dataset_name}")
 
-def download_deepweeds(base_path):
-    """Download DeepWeeds from GitHub"""
-    print("\n🌿 Downloading DeepWeeds...")
-    dest = os.path.join(base_path, "deepweeds")
-    if os.path.exists(os.path.join(dest, "images")):
-        print("  ✅ DeepWeeds already downloaded")
-        return
-    try:
-        subprocess.run(["git", "clone", "https://github.com/AlexOlsen/DeepWeeds.git",
-                         os.path.join(base_path, "DeepWeeds_raw")], check=True)
-        print("  ✅ DeepWeeds cloned successfully")
-    except subprocess.CalledProcessError as exc:
-        print(f"  ❌ git clone failed: {exc}")
-        print("  💡 Ensure git is installed and you have internet access, then retry.")
-        return
-    print("  ⚠️ Note: This is a CLASSIFICATION dataset - needs adaptation for detection")
+def download_mhweed16(base_path):
+    """Instructions for MH-Weed16 download"""
+    print("\n🌿 MH-Weed16 Dataset (Maharashtra Weed Dataset — PRIMARY):")
+    print("  📥 Option 1 - Kaggle (recommended):")
+    print('     kaggle datasets download -s "MH-Weed16"')
+    print('     # Or search "Maharashtra weed dataset" at https://www.kaggle.com/datasets')
+    print("  📥 Option 2 - Direct search:")
+    print('     Search "MH-Weed16 Maharashtra weed detection" for dataset repositories')
+    print("  ℹ️  ~25,972 images, 16 weed species, bounding box annotations (YOLO format)")
+    create_dataset_structure(base_path, "mhweed16")
 
 def download_cottonweed(base_path):
     """Instructions for CottonWeed download"""
@@ -87,7 +81,7 @@ if __name__ == '__main__':
     base_path = "/content/drive/MyDrive/AgroKD_Datasets" if is_colab else "datasets"
     os.makedirs(base_path, exist_ok=True)
     
-    download_deepweeds(base_path)
+    download_mhweed16(base_path)
     download_cottonweed(base_path)
     download_riceweed(base_path)
     
@@ -95,6 +89,6 @@ if __name__ == '__main__':
     print("✅ Dataset setup complete!")
     print(f"📁 Base path: {base_path}")
     print("\nFinal 3 datasets:")
-    print("  1. CottonWeed 🇮🇳🇺🇸 - Detection (15 weeds + cotton)")
-    print("  2. DeepWeeds 🇦🇺 - Classification (8 weeds + negative)")
+    print("  1. MH-Weed16 🇮🇳 - Detection (16 Indian weed species, ~25,972 images) [PRIMARY]")
+    print("  2. CottonWeed 🇮🇳🇺🇸 - Detection (15 weeds + cotton)")
     print("  3. RiceWeed 🇮🇳 - Detection (rice + weeds in paddy fields)")

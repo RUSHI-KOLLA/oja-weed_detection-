@@ -9,7 +9,7 @@ Steps covered:
   2. Install dependencies
   3. Mount Google Drive
   4. Create project folder structure
-  5. Download a sample dataset (DeepWeeds subset via Roboflow public API)
+  5. Download a sample dataset (MH-Weed16 via Kaggle)
   6. Explore and visualise data
   7. Count class distributions
 """
@@ -71,7 +71,7 @@ os.makedirs(DRIVE_ROOT, exist_ok=True)
 # ────────────────────────────────────────────────────────────────────────────
 
 FOLDERS = [
-    "datasets/deepweeds",
+    "datasets/mhweed16",
     "datasets/cottonweed",
     "datasets/riceweed",
     "checkpoints",
