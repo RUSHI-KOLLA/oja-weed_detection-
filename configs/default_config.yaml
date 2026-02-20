@@ -3,7 +3,7 @@
 
 # ── Model ────────────────────────────────────────────────────────────────────
 model:
-  num_classes: 15          # Number of target classes (adjust per dataset)
+  num_classes: 15          # Adjust to match your dataset: CottonWeed=16, DeepWeeds=9
   img_size: 640            # Input image size (pixels)
   fpn_channels: 128        # Uniform channel width inside the FPN
 

@@ -3,7 +3,7 @@
 # https://doi.org/10.5281/zenodo.7535814
 #
 # Task: Object detection (bounding boxes, YOLO format)
-# Size: ~7 578 images
+# Size: ~7,578 images
 # Classes: 15 weed species + 1 cotton class (16 total)
 
 task: detect

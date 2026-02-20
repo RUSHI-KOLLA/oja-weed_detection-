@@ -3,7 +3,7 @@
 # https://doi.org/10.1038/s41598-018-38343-3
 #
 # Task: Image classification (8 weed species + negative class)
-# Size: ~17 509 images, 256×256 px
+# Size: ~17,509 images, 256×256 px
 # Split: 80 % train / 20 % val (no separate test set released)
 
 task: classify

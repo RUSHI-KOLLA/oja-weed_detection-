@@ -242,8 +242,10 @@ if __name__ == "__main__":
         # Simulate YOLO creating output files
         os.makedirs(os.path.join(local_run, "weights"), exist_ok=True)
         for name in ("best.pt", "last.pt"):
-            open(os.path.join(local_run, "weights", name), "wb").close()
-        open(os.path.join(local_run, "results.csv"), "w").close()
+            with open(os.path.join(local_run, "weights", name), "wb"):
+                pass
+        with open(os.path.join(local_run, "results.csv"), "w"):
+            pass
 
         syncer = DriveSyncer(
             local_run_dir=local_run,
