@@ -39,6 +39,107 @@ python scripts/train_agrokd.py
 
 ---
 
+## 🚀 Quick Start: Run Benchmark
+
+Run the **full 10 model × 3 dataset benchmark** in one command:
+
+```bash
+python scripts/master_benchmark_loop.py
+```
+
+This will:
+1. Train each of the 10 benchmark models on CottonWeed, DeepWeeds, and RiceWeed (50 epochs each).
+2. Measure FPS and GPU energy consumption per model.
+3. Compute an Efficiency Score (mAP50 / Energy).
+4. Save all results to `results/benchmark_results.csv` (and Google Drive if on Colab).
+5. Print a formatted comparison table.
+
+**Single-model benchmark** (for Colab interns):
+
+```bash
+# Edit Cell 0 to set MODEL_NAME / MODEL_PATH / DATASET, then run:
+python notebooks/03_benchmark_single_model.py
+```
+
+---
+
+## 👩‍💻 Intern Experiment Guide
+
+Each intern is assigned **one model** to benchmark across all three datasets.
+
+### Step-by-step
+
+1. **Open Google Colab** and create a new GPU-accelerated notebook.
+2. **Paste** the contents of `notebooks/03_benchmark_single_model.py` cell-by-cell.
+3. **Edit Cell 0** — set `MODEL_NAME`, `MODEL_PATH`, and the dataset variables.
+4. **Run all cells** — training takes ~2–4 hours per dataset on a T4 GPU.
+5. **Results** are automatically saved to your Google Drive at
+   `/MyDrive/agrokd_project/results/results_<model>_<dataset>.csv`.
+6. **Share your CSV** with the team lead when all three datasets are done.
+
+### Model assignments (suggested)
+
+| Intern | Model | Ultralytics ID |
+|--------|-------|----------------|
+| 1 | YOLOv8n | `yolov8n.pt` |
+| 2 | YOLOv8s | `yolov8s.pt` |
+| 3 | YOLOv8m | `yolov8m.pt` |
+| 4 | YOLOv9t | `yolov9t.pt` |
+| 5 | YOLOv9s | `yolov9s.pt` |
+| 6 | YOLOv10n | `yolov10n.pt` |
+| 7 | YOLOv10s | `yolov10s.pt` |
+| 8 | YOLOv11n | `yolo11n.pt` |
+| 9 | RT-DETR-L | `rtdetr-l.pt` |
+| 10 | YOLO-World | `yolov8s-worldv2.pt` |
+
+### Anti-idle (prevent Colab from disconnecting)
+
+Paste this in the browser **Console** (F12 → Console tab):
+
+```javascript
+function keepAlive() {
+    document.querySelector("colab-toolbar-button#connect").click();
+}
+setInterval(keepAlive, 60000);
+```
+
+---
+
+## 🗓 15-Day Execution Timeline
+
+| Day(s) | Task |
+|--------|------|
+| 1 | Setup: clone repo, install deps, verify GPU in Colab |
+| 2 | Download & verify all three datasets; update YAML configs |
+| 3–4 | Interns run `03_benchmark_single_model.py` on CottonWeed |
+| 5–6 | Interns run `03_benchmark_single_model.py` on DeepWeeds |
+| 7–8 | Interns run `03_benchmark_single_model.py` on RiceWeed |
+| 9 | Team lead runs `04_aggregate_results.py` — merge all CSVs |
+| 10 | Run ablation study (`05_ablation_study.py`) on best dataset |
+| 11 | Run `generate_paper_figures.py` — generate all 10 paper figures |
+| 12 | Run `energy_profiler.py` for detailed energy profiling |
+| 13 | Verify results, re-run any failed experiments |
+| 14 | Write paper sections: experiments, results, discussion |
+| 15 | Final review, submit to journal |
+
+---
+
+## 📥 Results Collection
+
+Once all interns have completed their benchmarks:
+
+1. All result CSVs are in `/MyDrive/agrokd_project/results/` on Google Drive.
+2. Open `notebooks/04_aggregate_results.py` in Colab.
+3. Run all cells — the notebook will:
+   - Scan Drive for all `results_*.csv` files.
+   - Merge into a single master table.
+   - Generate 6 publication-ready figures (Pareto curve, bar charts, radar chart).
+   - Export a LaTeX-ready table (`results_table.tex`).
+   - Run a paired t-test between the top-2 models.
+4. Figures are saved to `/MyDrive/agrokd_project/results/figures/aggregated/`.
+
+---
+
 ## 📁 Project Structure
 
 ```
@@ -52,19 +153,26 @@ oja-weed_detection-/
 │   ├── drive_syncer.py           # Google Drive sync for YOLO runs
 │   └── __init__.py
 ├── scripts/
-│   ├── train_agrokd.py        # Full AgroKD-Net training script
-│   ├── benchmark_models.py    # Compare 10 detection models
+│   ├── train_agrokd.py           # Full AgroKD-Net training script
+│   ├── benchmark_models.py       # Basic single-dataset benchmark
+│   ├── master_benchmark_loop.py  # ⭐ 10 models × 3 datasets full grid
+│   ├── energy_profiler.py        # GPU energy profiling utility
+│   ├── generate_paper_figures.py # Publication figure generator
 │   └── __init__.py
 ├── configs/
-│   ├── default_config.yaml    # Default hyper-parameters
+│   ├── default_config.yaml       # Default hyper-parameters
+│   ├── experiment_config.yaml    # ⭐ Standardised experiment settings
 │   ├── dataset_configs/
 │   │   ├── deepweeds.yaml
 │   │   ├── cottonweed.yaml
 │   │   └── riceweed.yaml
 │   └── __init__.py
 ├── notebooks/
-│   ├── 01_setup_and_explore.py   # Colab setup & data exploration
-│   └── 02_train_with_autosave.py # Colab training with auto-save
+│   ├── 01_setup_and_explore.py       # Colab setup & data exploration
+│   ├── 02_train_with_autosave.py     # Colab training with auto-save
+│   ├── 03_benchmark_single_model.py  # ⭐ Per-intern single-model benchmark
+│   ├── 04_aggregate_results.py       # ⭐ Merge all CSVs + figures + LaTeX
+│   └── 05_ablation_study.py          # ⭐ OJS component ablation
 ├── results/                   # Training outputs (gitignored)
 ├── requirements.txt
 └── README.md
@@ -247,10 +355,16 @@ your latest weights are already on Google Drive.
 - [x] `models/agrokd_net.py` — full AgroKD-Net model
 - [x] `models/ojs_loss.py` — OJS loss functions
 - [x] `scripts/train_agrokd.py` — training script
-- [x] `scripts/benchmark_models.py` — 10-model benchmark
+- [x] `scripts/benchmark_models.py` — basic 10-model benchmark
+- [x] `scripts/master_benchmark_loop.py` — 10 models × 3 datasets full grid
+- [x] `scripts/energy_profiler.py` — GPU energy profiling utility
+- [x] `scripts/generate_paper_figures.py` — publication figure generator
 - [x] `configs/` — YAML configs
-- [x] `notebooks/` — Colab-ready scripts
-- [x] `requirements.txt`
+- [x] `configs/experiment_config.yaml` — standardised experiment settings
+- [x] `notebooks/03_benchmark_single_model.py` — per-intern benchmark
+- [x] `notebooks/04_aggregate_results.py` — results aggregation + LaTeX
+- [x] `notebooks/05_ablation_study.py` — OJS ablation study
+- [x] `requirements.txt` — includes tabulate, scipy
 - [ ] Real dataset integration
 - [ ] Teacher model training
 - [ ] Full KD training pipeline
