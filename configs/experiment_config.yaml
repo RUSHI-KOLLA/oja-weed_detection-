@@ -1,0 +1,60 @@
+# AgroKD-Net — Standardised Experiment Configuration
+# All benchmark scripts and notebooks must read settings from this file to
+# guarantee reproducibility across the 15-day research sprint.
+
+training:
+  imgsz: 640
+  epochs: 50
+  batch: 16
+  optimizer: AdamW
+  lr0: 0.001
+  weight_decay: 0.0001
+  cos_lr: true
+  seed: 42
+  save_period: 5
+
+inference:
+  warmup_passes: 100
+  timed_passes: 300
+  batch_size: 1
+
+benchmark_models:
+  yolov8n:    yolov8n.pt
+  yolov8s:    yolov8s.pt
+  yolov8m:    yolov8m.pt
+  yolov9t:    yolov9t.pt
+  yolov9s:    yolov9s.pt
+  yolov10n:   yolov10n.pt
+  yolov10s:   yolov10s.pt
+  yolov11n:   yolo11n.pt
+  rt-detr-l:  rtdetr-l.pt
+  yolo-world: yolov8s-worldv2.pt
+
+datasets:
+  - name: CottonWeed
+    config: configs/dataset_configs/cottonweed.yaml
+    task: detect
+  - name: DeepWeeds
+    config: configs/dataset_configs/deepweeds.yaml
+    task: classify
+  - name: RiceWeed
+    config: configs/dataset_configs/riceweed.yaml
+    task: detect
+
+metrics:
+  - mAP50
+  - mAP50-95
+  - precision
+  - recall
+  - f1
+  - params_M
+  - gflops
+  - fps
+  - energy_j_per_frame
+  - efficiency_score
+
+output:
+  drive_path: /content/drive/MyDrive/agrokd_project
+  results_dir: results
+  figures_dir: results/figures
+  checkpoints_dir: checkpoints
