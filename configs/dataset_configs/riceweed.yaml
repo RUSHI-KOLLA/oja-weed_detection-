@@ -1,0 +1,39 @@
+# RiceWeed Dataset Configuration
+# ================================
+# Rice paddy field weed detection dataset
+# Region: South & Southeast Asia (India focus)
+# Annotation: Bounding boxes (YOLO format)
+#
+# Download Instructions:
+# Option 1 - Roboflow Universe:
+#   Search "rice weed detection" at https://universe.roboflow.com
+#   Export in YOLOv8 format
+#
+# Option 2 - Kaggle:
+#   Search "paddy weed detection" or "rice weed" at https://www.kaggle.com/datasets
+#   Convert annotations to YOLO format if needed
+#
+# Relevance: Most important dataset for Indian agriculture (paddy fields)
+
+# Dataset paths (update after downloading)
+path: datasets/riceweed
+train: images/train
+val: images/val
+test: images/test
+
+# Number of classes
+nc: 4
+
+# Class names
+names:
+  0: rice
+  1: barnyard_grass
+  2: cyperus
+  3: broadleaf_weed
+
+# Dataset info
+dataset_name: RiceWeed
+description: "Rice paddy field weed detection - Indian/Southeast Asian agriculture"
+annotation_type: bounding_box
+approximate_images: 3000
+source: "Roboflow / Kaggle community datasets"

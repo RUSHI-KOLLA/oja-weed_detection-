@@ -73,7 +73,7 @@ os.makedirs(DRIVE_ROOT, exist_ok=True)
 FOLDERS = [
     "datasets/deepweeds",
     "datasets/cottonweed",
-    "datasets/cwfid",
+    "datasets/riceweed",
     "checkpoints",
     "results/benchmarks",
     "results/agrokd",
